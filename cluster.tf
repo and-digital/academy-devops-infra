@@ -101,7 +101,8 @@ resource "aws_ecs_task_definition" "service" {
       logDriver: "awslogs",
       options: {
         "awslogs-group": aws_cloudwatch_log_group.logs.name,
-        "awslogs-stream-prefix": "academy-logs"
+        "awslogs-stream-prefix": "academy-logs",
+        "awslogs-region": "eu-west-2"
       }
     }
   }])
