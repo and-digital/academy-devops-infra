@@ -85,21 +85,6 @@ resource "aws_security_group" "main" {
   }
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 resource "aws_ecs_task_definition" "service" {
   family                   = "service"
   network_mode             = "awsvpc"
@@ -110,7 +95,7 @@ resource "aws_ecs_task_definition" "service" {
 
   container_definitions = jsonencode([{
     name : "first",
-    image : "257581047493.dkr.ecr.eu-west-2.amazonaws.com/tam:master",
+    image : "${aws_ecr_repository.ecr.respoitory_url}:master",
     cpu : 256,
     memory : 512,
     essential : true,
