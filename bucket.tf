@@ -55,7 +55,7 @@ resource "aws_iam_policy" "deploy" {
       },
       {
         Effect : "Allow",
-        Action : "[dynamodb:GetItem, dynamodb:BatchGetItem, dynamodb:Query, dynamodb:PutItem]",
+        Action : ["dynamodb:GetItem", "dynamodb:BatchGetItem", "dynamodb:Query", "dynamodb:PutItem"],
         Resource : aws_dynamodb_table.basic-dynamodb-table.arn
       }
     ]
