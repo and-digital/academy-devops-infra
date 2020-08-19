@@ -5,7 +5,7 @@ module "vpc" {
   name = "my-vpc"
   cidr = "10.0.0.0/16"
 
-  azs             = ["eu-west-2a", "eu-west-2b"]
+  azs                = ["eu-west-2a", "eu-west-2b"]
   enable_nat_gateway = true
 
   private_subnets = ["10.0.1.0/24", "10.0.2.0/24"]
