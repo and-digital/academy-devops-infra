@@ -52,6 +52,11 @@ resource "aws_iam_policy" "deploy" {
         Effect : "Allow",
         Action : "ecr:PutImage",
         Resource : aws_ecr_repository.ecr.arn
+      },
+      {
+        Effect : "Allow",
+        Action : "dynamodb:GetItem",
+        Resource : aws_dynamodb_table.basic-dynamodb-table.arn
       }
     ]
   })
@@ -59,6 +64,6 @@ resource "aws_iam_policy" "deploy" {
 
 resource "aws_iam_user_policy_attachment" "deploy" {
   policy_arn = aws_iam_policy.deploy.arn
-  user = aws_iam_user.deploy.id
+  user       = aws_iam_user.deploy.id
 }
 
