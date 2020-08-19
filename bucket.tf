@@ -1,5 +1,5 @@
 resource "aws_ecr_repository" "ecr" {
-  name = "romans"
+  name = "tam"
 }
 
 resource "aws_iam_user" "deploy" {
