@@ -1,3 +1,4 @@
+data "aws_region" "current" {}
 
 resource "aws_ecs_cluster" "cluster" {
   name = "and-academy"
@@ -102,7 +103,7 @@ resource "aws_ecs_task_definition" "service" {
       options: {
         "awslogs-group": aws_cloudwatch_log_group.logs.name,
         "awslogs-stream-prefix": "academy-logs",
-        "awslogs-region": "eu-west-2"
+        "awslogs-region": data.aws_region.current.name
       }
     }
   }])
