@@ -13,13 +13,6 @@ module "vpc" {
 
 }
 
-module "aws_logs" {
-  source         = "trussworks/logs/aws"
-  s3_bucket_name = "dev-ops-logs"
-  region         = "eu-west-2"
-}
-
-
 output "test" {
   value = module.vpc.vpc_id
 }
