@@ -12,22 +12,22 @@ resource "aws_alb" "main" {
 
 
 resource "aws_alb_target_group" "main" {
-  name = "academy"
-  port = 80
-  protocol = "HTTP"
-  vpc_id = module.vpc.vpc_id
+  name        = "academy"
+  port        = 80
+  protocol    = "HTTP"
+  vpc_id      = module.vpc.vpc_id
   target_type = "ip"
 }
 
 
 resource "aws_alb_listener" "main" {
   load_balancer_arn = aws_alb.main.arn
-  port = 80
-  protocol = "HTTP"
+  port              = 80
+  protocol          = "HTTP"
 
   default_action {
     target_group_arn = aws_alb_target_group.main.arn
-    type = "forward"
+    type             = "forward"
   }
 }
 
@@ -61,7 +61,7 @@ resource "aws_ecs_service" "main" {
 
 
 resource "aws_security_group" "main" {
-  vpc_id      = module.vpc.vpc_id
+  vpc_id = module.vpc.vpc_id
 
   ingress {
     protocol    = "tcp"
@@ -78,9 +78,9 @@ resource "aws_security_group" "main" {
   }
 
   egress {
-    from_port = 0
-    to_port   = 0
-    protocol  = "-1"
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
     cidr_blocks = ["0.0.0.0/0"]
   }
 }
@@ -101,24 +101,24 @@ resource "aws_security_group" "main" {
 
 
 resource "aws_ecs_task_definition" "service" {
-  family                = "service"
+  family                   = "service"
   network_mode             = "awsvpc"
   requires_compatibilities = ["FARGATE"]
   cpu                      = 256
   memory                   = 512
-  execution_role_arn =  aws_iam_role.main.arn
+  execution_role_arn       = aws_iam_role.main.arn
 
   container_definitions = jsonencode([{
-    name: "first",
-    image: "257581047493.dkr.ecr.eu-west-2.amazonaws.com/tam:master",
-    cpu: 256,
-    memory: 512,
-    essential: true,
+    name : "first",
+    image : "257581047493.dkr.ecr.eu-west-2.amazonaws.com/tam:master",
+    cpu : 256,
+    memory : 512,
+    essential : true,
     readonly_root_filesystem = false,
-    portMappings: [
+    portMappings : [
       {
-        containerPort: 80,
-        hostPort: 80
+        containerPort : 80,
+        hostPort : 80
       }
     ]
   }])
@@ -168,5 +168,12 @@ EOF
 
 resource "aws_iam_role_policy_attachment" "main" {
   policy_arn = aws_iam_policy.main.arn
-  role = aws_iam_role.main.name
+  role       = aws_iam_role.main.name
+}
+
+
+module "aws_logs" {
+  source         = "trussworks/logs/aws"
+  s3_bucket_name = "dev-ops-logs"
+  region         = "eu-west-2"
 }
