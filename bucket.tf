@@ -1,5 +1,5 @@
 resource "aws_ecr_repository" "ecr" {
-  name = "academy-repository"
+  name = "academy"
 }
 
 resource "aws_iam_user" "deploy" {
