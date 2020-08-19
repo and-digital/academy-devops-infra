@@ -16,10 +16,10 @@ resource "aws_dynamodb_table" "basic-dynamodb-table" {
     type = "S"
   }
 
-  attribute {
-    name = "TopScore"
-    type = "N"
-  }
+  #   attribute {
+  #     name = "TopScore"
+  #     type = "N"
+  #   }
 
   #   ttl {
   #     attribute_name = "TimeToExist"
