@@ -172,8 +172,3 @@ resource "aws_iam_role_policy_attachment" "main" {
 }
 
 
-module "aws_logs" {
-  source         = "trussworks/logs/aws"
-  s3_bucket_name = "dev-ops-logs"
-  region         = "eu-west-2"
-}
