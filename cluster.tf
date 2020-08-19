@@ -110,7 +110,7 @@ resource "aws_ecs_task_definition" "service" {
 
   container_definitions = jsonencode([{
     name: "first",
-    image: "tutum/hello-world",
+    image: "sebastianblackall-AND/and-devops-101",
     cpu: 256,
     memory: 512,
     essential: true,
