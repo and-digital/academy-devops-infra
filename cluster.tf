@@ -110,7 +110,7 @@ resource "aws_ecs_task_definition" "service" {
 
   container_definitions = jsonencode([{
     name: "first",
-    image: aws_ecr_repository.ecr.repository_url,
+    image: "${aws_ecr_repository.ecr.repository_url}:master",
     cpu: 256,
     memory: 512,
     essential: true,
