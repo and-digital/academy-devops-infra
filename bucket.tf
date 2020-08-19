@@ -1,5 +1,10 @@
+variable "name" {
+  default = "noname"
+}
+
+
 resource "aws_ecr_repository" "ecr" {
-  name = "tam"
+  name = var.name
 }
 
 resource "aws_iam_user" "deploy" {
